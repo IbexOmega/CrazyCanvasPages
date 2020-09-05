@@ -1,0 +1,20 @@
+---
+---
+@import "main";
+
+.chart-container {
+    border-radius: 2%;
+    background-color: #292a3e;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+    height: 40vh;
+    width: 40vw;
+}
+
+.charts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
