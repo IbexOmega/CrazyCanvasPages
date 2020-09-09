@@ -3,28 +3,38 @@
         "68c1415": {
             "message": "Correct pages repo",
             "timestamp": "2020-09-08T16:48:11Z"
+        },
+        "3664b74": {
+            "message": "Build, lint and benchmark workflows (#16)\n* Add & print RuntimeStats after benchmarks\r\n\r\n* Fix enforcing of crlf\r\n\r\n* Add engine config, runtimestats in namespace\r\n\r\n* Add workflow configs and scripts\r\n\r\n* cppcheck report added/updated\r\n\r\n* Run build jobs self-hosted runner\r\n\r\n* Remove and ignore cppcheck_report\r\n\r\n* Test run on master branch\r\n\r\n* Run workflow on pushing branch again\r\n\r\n* Specify platform as x64_StaticLib\r\n\r\n* Specify correct configurations\r\n\r\n* Fix compilation error\r\n\r\n* Correct build configurations\r\n\r\n* Remove portaudio from project\r\n\r\n* Find fmodL.dll path programmatically\r\n\r\n* Remove debug code\r\n\r\n* Pre-Build job\r\n\r\n* Debug benchmark workflow\r\n\r\n* Test commit\r\n\r\n* Another test commit\r\n\r\n* Don't apply crlf to everything\r\n\r\n* Correct pages repo\r\n\r\n* Remove debug code\r\n\r\n* Exclude Dependencies/ from linting\r\n\r\n* Use self-made lint script instead of action\r\n\r\n* Assimp stored using LFS\r\n\r\n* Remove tinyobjloader\r\n\r\n* Print lint report\r\n\r\n* Stop printing lint report\r\n\r\n* LFS cache\r\n\r\n* lib and exp as binary\r\n\r\n* Rename jobs and steps\r\n\r\nCo-authored-by: flawfinder-action <flawfinder-action@master>",
+            "timestamp": "2020-09-09T12:47:29Z"
         }
     },
     "AverageFPS": {
         "rtOn": [
-            1509.9375
+            1509.9375,
+            2274.425537109375
         ],
         "rtOff": [
-            1509.6036376953125
+            1509.6036376953125,
+            2255.81591796875
         ],
         "commitIDs": [
-            "68c1415"
+            "68c1415",
+            "3664b74"
         ]
     },
     "PeakMemoryUsage": {
         "rtOn": [
-            747.4872436523438
+            747.4872436523438,
+            631.4352416992188
         ],
         "rtOff": [
-            735.7562866210938
+            735.7562866210938,
+            622.26025390625
         ],
         "commitIDs": [
-            "68c1415"
+            "68c1415",
+            "3664b74"
         ]
     }
 }
