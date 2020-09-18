@@ -12,11 +12,17 @@ function generateGraphs() {
     const data = {{ site.data.charts | jsonify }};
     const commitsData = data['commits']
 
-    let ctx = document.getElementById('avgFPSChart').getContext('2d');
+    let ctx = document.getElementById('avgFPS').getContext('2d');
     generateGraph(ctx, 'Average FPS', data['AverageFPS'], commitsData);
 
-    ctx = document.getElementById('peakMemUsg').getContext('2d');
-    generateGraph(ctx, 'Peak Memory Usage (MB)', data['PeakMemoryUsage'], commitsData);
+    ctx = document.getElementById('peakRAM').getContext('2d');
+    generateGraph(ctx, 'Peak RAM Usage (MB)', data['PeakRAM'], commitsData);
+
+    ctx = document.getElementById('peakVRAM').getContext('2d');
+    generateGraph(ctx, 'Peak VRAM Usage (MB)', data['PeakVRAM'], commitsData);
+
+    ctx = document.getElementById('avgVRAM').getContext('2d');
+    generateGraph(ctx, 'Average VRAM Usage (MB)', data['AverageVRAM'], commitsData);
 }
 
 function generateGraph(ctx, title, chartData, commitsData) {

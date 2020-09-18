@@ -345,7 +345,7 @@
             "19fcdab"
         ]
     },
-    "PeakMemoryUsage": {
+    "PeakRAM": {
         "rtOn": [
             747.4872436523438,
             631.4352416992188,
@@ -495,6 +495,22 @@
             "b1fbb9c",
             "f4f3338",
             "19fcdab"
+        ]
+    },
+    "PeakVRAM": {
+        "rtOn": [
+        ],
+        "rtOff": [
+        ],
+        "commitIDs": [
+        ]
+    },
+    "AverageVRAM": {
+        "rtOn": [
+        ],
+        "rtOff": [
+        ],
+        "commitIDs": [
         ]
     }
 }
