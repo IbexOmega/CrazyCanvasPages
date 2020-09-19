@@ -2,32 +2,41 @@
 ---
 
 const chartjs = window.Chart.min;
+let charts = [];
 
 window.onload = function() {
-    generateGraphs();
+    // Get current date filter
+    const dateFilterString = document.getElementById('filterDropdownBtn').innerText;
+    const date = dateFilterStringToDate(dateFilterString);
+
+    generateGraphs(date);
 };
 
-function generateGraphs() {
+function generateGraphs(dateFilter) {
     // @ts-ignore
     const data = {{ site.data.charts | jsonify }};
-    const commitsData = data['commits']
 
-    let ctx = document.getElementById('avgFPS').getContext('2d');
-    generateGraph(ctx, 'Average FPS', data['AverageFPS'], commitsData);
+    // Delete existing charts
+    for (const chart of charts) {
+        chart.destroy();
+    }
 
-    ctx = document.getElementById('peakRAM').getContext('2d');
-    generateGraph(ctx, 'Peak RAM Usage (MB)', data['PeakRAM'], commitsData);
+    charts = [];
 
-    ctx = document.getElementById('peakVRAM').getContext('2d');
-    generateGraph(ctx, 'Peak VRAM Usage (MB)', data['PeakVRAM'], commitsData);
+    const commitsData = filterCommits(dateFilter, data['commits']);
+    const commitIDs = Object.keys(commitsData);
 
-    ctx = document.getElementById('avgVRAM').getContext('2d');
-    generateGraph(ctx, 'Average VRAM Usage (MB)', data['AverageVRAM'], commitsData);
+    generateGraph('avgFPS', 'Average FPS', filterChartData(data['AverageFPS'], commitIDs), commitsData);
+    generateGraph('peakRAM', 'Peak RAM Usage (MB)', filterChartData(data['PeakRAM'], commitIDs), commitsData);
+    generateGraph('peakVRAM', 'Peak VRAM Usage (MB)', filterChartData(data['PeakVRAM'], commitIDs), commitsData);
+    generateGraph('avgVRAM', 'Average VRAM Usage (MB)', filterChartData(data['AverageVRAM'], commitIDs), commitsData);
 }
 
-function generateGraph(ctx, title, chartData, commitsData) {
+function generateGraph(htmlElementID, title, chartData, commitsData) {
+    let ctx = document.getElementById(htmlElementID).getContext('2d');
+
     const tooltips = createTooltips(chartData['commitIDs'], commitsData);
-    return new Chart(ctx, {
+    charts.push(new Chart(ctx, {
         type: 'line',
         data: {
             labels: chartData['commitIDs'],
@@ -89,7 +98,7 @@ function generateGraph(ctx, title, chartData, commitsData) {
                 }
             }
         }
-    });
+    }));
 }
 
 function createTooltips(commitIDs, commitData) {
@@ -129,4 +138,66 @@ function onChartResize(chart, _) {
             dataset.backgroundColor = getRtOffBackgroundColor(chart.ctx);
         }
     }
+}
+
+function onFilterClick(chosenFilter) {
+    document.getElementById('filterDropdownBtn').innerText = chosenFilter;
+    generateGraphs(dateFilterStringToDate(chosenFilter));
+}
+
+function dateFilterStringToDate(filterString) {
+    // A filter string consists of a number and a time unit, eg: '2 WEEKS'
+    const splitString = filterString.split(' ');
+    const numberPart = splitString[0];
+    const timeUnit = splitString[1][0]; // Only the first letter in the time unit is of value eg. 'W' for weeks
+
+    const date = new Date();
+    switch (timeUnit) {
+        case 'D':
+            date.setDate(date.getDate() - numberPart);
+            break;
+        case 'W':
+            date.setDate(date.getDate() - numberPart * 7);
+            break;
+        case 'M':
+            date.setMonth(date.getMonth() - numberPart);
+            break;
+        case 'Y':
+            date.setYear(date.getYear() - numberPart);
+            break;
+    }
+
+    return date;
+}
+
+function filterCommits(dateFilter, commitsData) {
+    const filteredCommitsData = {};
+    for (const [commitID, commitInfo] of Object.entries(commitsData)) {
+        const commitDate = new Date(commitInfo['timestamp']);
+        if (commitDate >= dateFilter) {
+            filteredCommitsData[commitID] = commitInfo;
+        }
+    }
+
+    return filteredCommitsData;
+}
+
+// Returns data points that correspond to the given commit IDs
+function filterChartData(chartData, commitIDs) {
+    const filteredChartData = {
+        'rtOn': [],
+        'rtOff': [],
+        'commitIDs': []
+    };
+
+    const chartDataIDs = chartData['commitIDs'];
+    for (let dataIdx = 0; dataIdx < chartDataIDs.length; dataIdx++) {
+        if (commitIDs.includes(chartDataIDs[dataIdx])) {
+            filteredChartData['rtOn'].push(chartData['rtOn'][dataIdx]);
+            filteredChartData['rtOff'].push(chartData['rtOff'][dataIdx]);
+            filteredChartData['commitIDs'].push(chartData['commitIDs'][dataIdx]);
+        }
+    }
+
+    return filteredChartData;
 }

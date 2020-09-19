@@ -1,0 +1,35 @@
+@import "bootstrap/bootstrap";
+
+.body {
+    background-color: #1e202f;
+    margin: 0;
+    padding: 0;
+}
+
+.current {
+    color: green;
+}
+
+.content {
+    margin-top: 9vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 5vh;
+
+    background-color: #292a3e;
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    .page-title {
+        margin-left: 30px;
+        color: #f4f4f4;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}

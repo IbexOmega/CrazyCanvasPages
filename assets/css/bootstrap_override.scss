@@ -1,0 +1,49 @@
+.dropdown {
+    width: 20vw !important;
+    margin-left: 8vw;
+
+    box-shadow: none !important;
+}
+
+// Normal state
+.dropdown .dropdown-toggle {
+    width: 4.5vw !important;
+    border-left: none !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: 3px solid rgba(101, 29, 149, 1.0);
+    background-color: #1e202f !important;
+}
+
+// Hovered
+.dropdown:hover .dropdown-toggle {
+    background-color: #1e202f !important;
+    border-bottom: 3px solid rgba(101, 29, 149, 1.0);
+}
+
+// Pressed
+.show > .btn-secondary.dropdown-toggle:focus {
+    background-color: #1e202f !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    border-left: none !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: 3px solid rgba(101, 29, 149, 1.0);
+}
+
+.dropdown-menu {
+    background-color: #1e202f !important;
+
+    .dropdown-item {
+        background-color: #1e202f !important;
+        color: white !important;
+    }
+
+    .dropdown-item:hover {
+        background-color: rgba(101, 29, 149, 1.0) !important;
+        color: white !important;
+    }
+}
+
