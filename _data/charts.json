@@ -547,11 +547,6 @@
             "5de8901"
         ]
     },
-    "PeakVRAM": {
-        "rtOn": [],
-        "rtOff": [],
-        "commitIDs": []
-    },
     "AverageVRAM": {
         "rtOn": [],
         "rtOff": [],
