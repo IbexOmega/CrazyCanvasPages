@@ -557,6 +557,11 @@
             "925a2be"
         ]
     },
+    "PeakVRAM": {
+        "rtOn": [],
+        "rtOff": [],
+        "commitIDs": []
+    },
     "AverageVRAM": {
         "rtOn": [],
         "rtOff": [],

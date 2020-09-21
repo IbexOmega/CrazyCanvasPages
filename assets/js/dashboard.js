@@ -28,6 +28,7 @@ function generateGraphs(dateFilter) {
 
     generateGraph('avgFPS', 'Average FPS', filterChartData(data['AverageFPS'], commitIDs), commitsData);
     generateGraph('peakRAM', 'Peak RAM Usage (MB)', filterChartData(data['PeakRAM'], commitIDs), commitsData);
+    generateGraph('peakVRAM', 'Peak VRAM Usage (MB)', filterChartData(data['PeakVRAM'], commitIDs), commitsData);
     generateGraph('avgVRAM', 'Average VRAM Usage (MB)', filterChartData(data['AverageVRAM'], commitIDs), commitsData);
 }
 
