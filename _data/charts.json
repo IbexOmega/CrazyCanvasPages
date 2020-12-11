@@ -3853,6 +3853,11 @@
             "a2ece31"
         ]
     },
+    "AverageRAM": {
+        "rtOn": [],
+        "rtOff": [],
+        "commitIDs": []
+    },
     "PeakVRAM": {
         "rtOn": [
             632.7091064453125,

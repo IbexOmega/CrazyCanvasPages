@@ -28,6 +28,7 @@ function generateGraphs(dateFilter) {
 
     generateGraph('avgFPS', 'Average FPS', filterChartData(data['AverageFPS'], commitIDs), commitsData);
     generateGraph('peakRAM', 'Peak RAM Usage (MB)', filterChartData(data['PeakRAM'], commitIDs), commitsData);
+    generateGraph('avgRAM', 'Average RAM Usage (MB)', filterChartData(data['AverageRAM'], commitIDs), commitsData);
     generateGraph('peakVRAM', 'Peak VRAM Usage (MB)', filterChartData(data['PeakVRAM'], commitIDs), commitsData);
     generateGraph('avgVRAM', 'Average VRAM Usage (MB)', filterChartData(data['AverageVRAM'], commitIDs), commitsData);
 }
@@ -191,10 +192,17 @@ function filterChartData(chartData, commitIDs) {
     };
 
     const chartDataIDs = chartData['commitIDs'];
+    const rtOnSampleCount = chartData['rtOn'].length;
+    const rtOffSampleCount = chartData['rtOff'].length;
+
     for (let dataIdx = 0; dataIdx < chartDataIDs.length; dataIdx++) {
         if (commitIDs.includes(chartDataIDs[dataIdx])) {
-            filteredChartData['rtOn'].push(chartData['rtOn'][dataIdx]);
-            filteredChartData['rtOff'].push(chartData['rtOff'][dataIdx]);
+            // if (rtOnSampleCount > dataIdx) {
+                filteredChartData['rtOn'].push(chartData['rtOn'][dataIdx]);
+            // } else if (rtOffSampleCount > dataIdx) {
+                filteredChartData['rtOff'].push(chartData['rtOff'][dataIdx]);
+            // }
+
             filteredChartData['commitIDs'].push(chartData['commitIDs'][dataIdx]);
         }
     }
